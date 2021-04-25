@@ -8,11 +8,11 @@ app.post('/add', CatController.add);
 app.get('/query', CatController.query);
 app.get('/list', CatController.list);
 //put
-app.put('/update');
-app.put('/activate');
-app.put('/deactivate',);
+app.put('/update', CatController.update);
+app.put('/activate', CatController.activate);
+app.put('/deactivate', CatController.deactivate);
 
 //delete
-app.delete('/remove',);
+app.delete('/remove', CatController.remove);
 
 export default app;

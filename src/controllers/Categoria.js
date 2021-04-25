@@ -52,9 +52,12 @@ let list = async (req, res, next) => {
     }
 }
 
-let update = (req, res, next) => {
+let update = async (req, res, next) => {
+    let id = req.body._id;
+    const { nombre, descripcion } = req.body;
     try {
-
+        const data = await models.Categoria.findByIdAndUpdate({_id: id}, {nombre, descripcion})
+        res.status(200).json(data)
     } catch (e) {
         res.status(500).send({
             message: "Error en el proceso"
@@ -62,9 +65,12 @@ let update = (req, res, next) => {
         next()
     }
 }
-let remove = (req, res, next) => {
-    try {
 
+let remove = async (req, res, next) => {
+    let id = req.body._id;
+    try {
+        const data = await models.Categoria.findByIdAndDelete({_id: id})
+        res.status(200).json(data)
     } catch (e) {
         res.status(500).send({
             message: "Error en el proceso"
@@ -72,9 +78,12 @@ let remove = (req, res, next) => {
         next()
     }
 }
-let activate = (req, res, next) => {
-    try {
 
+let activate = async (req, res, next) => {
+    let id = req.body._id;
+    try {
+        const data = await models.Categoria.findByIdAndUpdate({_id: id}, {estado:1})
+        res.status(200).json(data)
     } catch (e) {
         res.status(500).send({
             message: "Error en el proceso"
@@ -82,9 +91,11 @@ let activate = (req, res, next) => {
         next()
     }
 }
-let deactivate = (req, res, next) => {
+let deactivate = async (req, res, next) => {
+    let id = req.body._id;
     try {
-
+        const data = await models.Categoria.findByIdAndUpdate({_id: id}, {estado:0})
+        res.status(200).json(data)
     } catch (e) {
         res.status(500).send({
             message: "Error en el proceso"
